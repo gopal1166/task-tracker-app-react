@@ -1,0 +1,27 @@
+.navbar-container {
+  display: flex;
+  padding: 1rem 10rem;
+  align-items: center;
+
+  .title {
+    color: #bb86fc;
+    font-size: 1.5rem;
+    font-weight: 400;
+  }
+
+  box-shadow: 0px 2.78427791595459px 5.56855583190918px 0px
+    rgba(171, 190, 209, 0.4);
+
+  .right-side-menu {
+    margin-left: auto;
+
+    ul {
+      display: flex;
+    }
+
+    li {
+      list-style: none;
+      margin-right: 1rem;
+    }
+  }
+}

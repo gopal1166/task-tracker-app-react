@@ -1,0 +1,33 @@
+.task-card-container {
+  width: 90%;
+  height: 7rem;
+  padding: 1rem;
+  margin-bottom: 0.5rem;
+
+  background-color: #fff;
+
+  .task-title-flex-container {
+    display: flex;
+    align-items: center;
+  }
+
+  .task-title {
+    display: inline-block;
+    width: 13rem;
+    margin-bottom: 0 !important;
+
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  .task-description {
+    display: -webkit-box;
+    width: 10rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    -webkit-line-clamp: 3; /* Adjust the number of lines as needed */
+    -webkit-box-orient: vertical;
+  }
+}

@@ -2,9 +2,23 @@
   text-align: center;
 }
 
+h1, h2, h3, h4, h5 {
+  margin: 0
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 0.5rem;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(193, 192, 192, 0.823);
+  border-radius: 10px;
 }
 
 @media (prefers-reduced-motion: no-preference) {
