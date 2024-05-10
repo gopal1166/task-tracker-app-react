@@ -9,6 +9,7 @@ import { useSelector } from "react-redux";
 import useFetchPosts from "../../hooks/useFetchPosts";
 import { useNavigate } from "react-router-dom";
 import EditTask from "./EditTask";
+import TaskDetails from "./TaskDetails";
 
 const TaskBoard = () => {
   const { data: storeData } = useSelector((state) => state.taskSlice);
@@ -20,6 +21,8 @@ const TaskBoard = () => {
   const [taskList, setTaskList] = useState([]);
   const [showEditTask, setShowEditTask] = useState(false);
   const [taskToEdit, setTaskToEdit] = useState();
+  const [taskDetails, setTaskDetails] = useState();
+  const [showTaskDetails, setShowTaskDetails] = useState(false);
 
   const navigate = useNavigate();
 
@@ -48,6 +51,13 @@ const TaskBoard = () => {
 
   const closeDrawer = () => {
     setShowEditTask(false);
+    setShowTaskDetails(false);
+  };
+
+  const handlePreviewIcon = (task) => {
+    console.log("task", task);
+    setTaskDetails(task);
+    setShowTaskDetails(true);
   };
 
   const handleEditIcon = (taskObj) => {
@@ -109,6 +119,7 @@ const TaskBoard = () => {
                   status={task.status}
                   closeDrawer={closeDrawer}
                   handleEditIcon={handleEditIcon}
+                  handlePreviewIcon={handlePreviewIcon}
                 />
               );
             })}
@@ -130,6 +141,7 @@ const TaskBoard = () => {
                   status={task.status}
                   closeDrawer={closeDrawer}
                   handleEditIcon={handleEditIcon}
+                  handlePreviewIcon={handlePreviewIcon}
                 />
               );
             })}
@@ -147,6 +159,7 @@ const TaskBoard = () => {
                   status={task.status}
                   closeDrawer={closeDrawer}
                   handleEditIcon={handleEditIcon}
+                  handlePreviewIcon={handlePreviewIcon}
                 />
               );
             })}
@@ -164,6 +177,7 @@ const TaskBoard = () => {
                   status={task.status}
                   closeDrawer={closeDrawer}
                   handleEditIcon={handleEditIcon}
+                  handlePreviewIcon={handlePreviewIcon}
                 />
               );
             })}
@@ -175,6 +189,12 @@ const TaskBoard = () => {
         closeDrawer={closeDrawer}
         updateTask={updateTask}
         taskToEdit={taskToEdit}
+      />
+
+      <TaskDetails
+        showTaskDetails={showTaskDetails}
+        taskDetails={taskDetails}
+        closeDrawer={closeDrawer}
       />
     </div>
   );

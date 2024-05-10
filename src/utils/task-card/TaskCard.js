@@ -28,7 +28,12 @@ const TaskCard = (props) => {
       <div className="task-title-flex-container">
         <h5 className="task-title">{props.title}</h5>
         <IconButton aria-label="view">
-          <PreviewIcon fontSize="small" />
+          <PreviewIcon
+            fontSize="small"
+            onClick={() => {
+              props.handlePreviewIcon({ ...props });
+            }}
+          />
         </IconButton>
         <IconButton aria-label="edit">
           <BorderColorIcon
