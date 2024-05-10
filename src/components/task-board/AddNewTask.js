@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-import { Button } from "@mui/base/Button";
+import Button from "@mui/material/Button";
 import TextInput from "../../utils/text-input/TextInput";
 import TextArea from "../../utils/text-area/TextArea";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { addNewTask } from "../../redux-store/taskSlice";
+import "./AddNewTask.scss";
 
 const AddNewTask = () => {
   const [taskTitle, setTaskTitle] = useState("");
@@ -56,8 +57,16 @@ const AddNewTask = () => {
         handleTextArea={handleTextArea}
       />
 
-      <Button onClick={() => handleSaveBtn()} color="primary">
+      <Button
+        variant="contained"
+        onClick={() => handleSaveBtn()}
+        color="primary"
+        sx={{ marginRight: "1rem" }}
+      >
         Save
+      </Button>
+      <Button variant="outlined" onClick={() => navigate(-1)} color="primary">
+        Cacel
       </Button>
     </div>
   );
