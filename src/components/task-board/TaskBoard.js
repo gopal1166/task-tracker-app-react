@@ -46,17 +46,14 @@ const TaskBoard = () => {
     }
   }, [taskList]);
 
-  const openDrawer = () => {
-    setShowEditTask(true);
-  };
-
   const closeDrawer = () => {
     setShowEditTask(false);
   };
 
-  const setTaskToEditInState = (taskObj) => {
+  const handleEditIcon = (taskObj) => {
     console.log("taskObj,", taskObj);
     setTaskToEdit(taskObj);
+    setShowEditTask(true);
   };
 
   const updateTask = (updateObj) => {
@@ -110,9 +107,8 @@ const TaskBoard = () => {
                   title={task.title}
                   description={task.description}
                   status={task.status}
-                  openDrawer={openDrawer}
                   closeDrawer={closeDrawer}
-                  setTaskToEditInState={setTaskToEditInState}
+                  handleEditIcon={handleEditIcon}
                 />
               );
             })}
@@ -132,9 +128,8 @@ const TaskBoard = () => {
                   title={task.title}
                   description={task.description}
                   status={task.status}
-                  openDrawer={openDrawer}
                   closeDrawer={closeDrawer}
-                  setTaskToEditInState={setTaskToEditInState}
+                  handleEditIcon={handleEditIcon}
                 />
               );
             })}
@@ -150,9 +145,8 @@ const TaskBoard = () => {
                   title={task.title}
                   description={task.description}
                   status={task.status}
-                  openDrawer={openDrawer}
                   closeDrawer={closeDrawer}
-                  setTaskToEditInState={setTaskToEditInState}
+                  handleEditIcon={handleEditIcon}
                 />
               );
             })}
@@ -168,9 +162,8 @@ const TaskBoard = () => {
                   title={task.title}
                   description={task.description}
                   status={task.status}
-                  openDrawer={openDrawer}
                   closeDrawer={closeDrawer}
-                  setTaskToEditInState={setTaskToEditInState}
+                  handleEditIcon={handleEditIcon}
                 />
               );
             })}

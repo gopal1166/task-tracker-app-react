@@ -35,8 +35,7 @@ const TaskCard = (props) => {
             fontSize="small"
             onClick={() => {
               console.log("props", props);
-              props.setTaskToEditInState({ ...props });
-              // props.openDrawer();
+              props.handleEditIcon({ ...props });
             }}
           />
         </IconButton>

@@ -82,7 +82,7 @@ const EditTask = (props) => {
               labelId="demo-simple-select-label"
               id="demo-simple-select"
               value={status}
-              defaultValue={status}
+              defaultValue={status ? status : "Open"}
               label="Status"
               onChange={statusHandler}
             >
