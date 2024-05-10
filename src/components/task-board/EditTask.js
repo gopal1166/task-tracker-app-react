@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Drawer from "@mui/material/Drawer";
 import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
@@ -18,9 +18,18 @@ const statusOptions = [
 ];
 
 const EditTask = (props) => {
-  const [taskTitle, setTaskTitle] = useState(props.taskTitle);
-  const [taskDesc, setTaskDesc] = useState(props.taskDescription);
-  const [status, setStatus] = useState(props.taskStatus);
+  const [taskTitle, setTaskTitle] = useState(props.taskToEdit?.title);
+  const [taskDesc, setTaskDesc] = useState(props.taskToEdit?.description);
+  const [status, setStatus] = useState(props.taskToEdit?.status);
+
+  useEffect(() => {
+    if (props) {
+      console.log("props: ", props);
+      setTaskTitle(props.taskToEdit?.title);
+      setTaskDesc(props.taskToEdit?.description);
+      setStatus(props.taskToEdit?.status);
+    }
+  }, [props]);
 
   const statusHandler = (event) => {
     console.log("value", event.target.value);
@@ -39,6 +48,12 @@ const EditTask = (props) => {
     console.log("title", taskTitle);
     console.log("desc", taskDesc);
     console.log("status", status);
+    console.log("props", props);
+    props.updateTask({
+      title: taskTitle,
+      description: taskDesc,
+      status: status,
+    });
   };
 
   return (
@@ -49,16 +64,25 @@ const EditTask = (props) => {
         PaperProps={{ sx: { width: 400, padding: "1rem" } }}
       >
         <h3>Edit Task</h3>
-        <TextInput label="Task Title" handleTextInput={titleHander} />
-        <TextArea label="Task Desc" handleTextArea={descHandler} />
+        <TextInput
+          label="Task Title"
+          handleTextInput={titleHander}
+          defaultValue={props.taskToEdit?.title}
+        />
+        <TextArea
+          label="Task Desc"
+          handleTextArea={descHandler}
+          defaultValue={props.taskToEdit?.description}
+        />
 
-        <Box sx={{ minWidth: 120, width: "90%" }}>
+        <Box sx={{ minWidth: 120, width: "90%", marginBottom: "1rem" }}>
           <FormControl fullWidth>
             <InputLabel id="demo-simple-select-label">Status</InputLabel>
             <Select
               labelId="demo-simple-select-label"
               id="demo-simple-select"
               value={status}
+              defaultValue={status}
               label="Status"
               onChange={statusHandler}
             >

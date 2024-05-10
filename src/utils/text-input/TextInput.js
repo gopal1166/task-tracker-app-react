@@ -2,7 +2,7 @@ import React from "react";
 import "./TextInput.scss";
 
 const TextInput = (props) => {
-  const { placeholder, label, value } = props;
+  const { placeholder, label, defaultValue } = props;
   return (
     <div className="text-input-container">
       <label htmlFor="text-input" className="label">
@@ -12,7 +12,7 @@ const TextInput = (props) => {
         id="text-input"
         className="text-input"
         placeholder={placeholder}
-        value={value}
+        defaultValue={defaultValue}
         onChange={(event) => props.handleTextInput(event)}
       />
     </div>

@@ -2,7 +2,7 @@ import React from "react";
 import "./TextArea.scss";
 
 const TextArea = (props) => {
-  const { placeholder, label, value } = props;
+  const { placeholder, label, defaultValue } = props;
   return (
     <div className="text-area-container">
       <label htmlFor="text-input">{label}</label>
@@ -10,7 +10,7 @@ const TextArea = (props) => {
         id="text-input"
         className="text-input"
         placeholder={placeholder}
-        value={value}
+        defaultValue={defaultValue}
         onChange={(event) => props.handleTextArea(event)}
       />
     </div>

@@ -14,8 +14,12 @@ const TaskBoard = () => {
   const { data: storeData } = useSelector((state) => state.taskSlice);
   const { loading, error, data } = useFetchPosts();
   const [openTaskList, setOpenTaskList] = useState([]);
+  const [inProgressTaskList, setInProgressTaskList] = useState([]);
+  const [inVerificationTaskList, setInVerificationTaskList] = useState([]);
+  const [doneTaskList, setDoneTaskList] = useState([]);
   const [taskList, setTaskList] = useState([]);
   const [showEditTask, setShowEditTask] = useState(false);
+  const [taskToEdit, setTaskToEdit] = useState();
 
   const navigate = useNavigate();
 
@@ -32,6 +36,13 @@ const TaskBoard = () => {
   useEffect(() => {
     if (taskList) {
       setOpenTaskList(taskList.filter((task) => task.status === "Open"));
+      setInProgressTaskList(
+        taskList.filter((task) => task.status === "InProgress")
+      );
+      setInVerificationTaskList(
+        taskList.filter((task) => task.status === "InVerification")
+      );
+      setDoneTaskList(taskList.filter((task) => task.status === "Done"));
     }
   }, [taskList]);
 
@@ -40,6 +51,23 @@ const TaskBoard = () => {
   };
 
   const closeDrawer = () => {
+    setShowEditTask(false);
+  };
+
+  const setTaskToEditInState = (taskObj) => {
+    console.log("taskObj,", taskObj);
+    setTaskToEdit(taskObj);
+  };
+
+  const updateTask = (updateObj) => {
+    console.log("updatedObj,", updateObj);
+    console.log("tasktoedit", taskToEdit.id);
+    const updatedItems = taskList.map((obj) =>
+      obj.id === taskToEdit.id ? { ...updateObj, id: taskToEdit.id } : obj
+    );
+
+    console.log("updatedItems, ", updatedItems);
+    setTaskList(updatedItems);
     setShowEditTask(false);
   };
 
@@ -81,8 +109,10 @@ const TaskBoard = () => {
                   id={task.id}
                   title={task.title}
                   description={task.description}
+                  status={task.status}
                   openDrawer={openDrawer}
                   closeDrawer={closeDrawer}
+                  setTaskToEditInState={setTaskToEditInState}
                 />
               );
             })}
@@ -93,16 +123,66 @@ const TaskBoard = () => {
         </div>
         <div className="task-stage-flex-item">
           <h5>IN PROGRESS</h5>
+          {inProgressTaskList &&
+            inProgressTaskList.map((task) => {
+              return (
+                <TaskCard
+                  handleDelete={handleDelete}
+                  id={task.id}
+                  title={task.title}
+                  description={task.description}
+                  status={task.status}
+                  openDrawer={openDrawer}
+                  closeDrawer={closeDrawer}
+                  setTaskToEditInState={setTaskToEditInState}
+                />
+              );
+            })}
         </div>
         <div className="task-stage-flex-item">
           <h5>IN VERIFICATION</h5>
+          {inVerificationTaskList &&
+            inVerificationTaskList.map((task) => {
+              return (
+                <TaskCard
+                  handleDelete={handleDelete}
+                  id={task.id}
+                  title={task.title}
+                  description={task.description}
+                  status={task.status}
+                  openDrawer={openDrawer}
+                  closeDrawer={closeDrawer}
+                  setTaskToEditInState={setTaskToEditInState}
+                />
+              );
+            })}
         </div>
         <div className="task-stage-flex-item">
           <h5>DONE</h5>
+          {doneTaskList &&
+            doneTaskList.map((task) => {
+              return (
+                <TaskCard
+                  handleDelete={handleDelete}
+                  id={task.id}
+                  title={task.title}
+                  description={task.description}
+                  status={task.status}
+                  openDrawer={openDrawer}
+                  closeDrawer={closeDrawer}
+                  setTaskToEditInState={setTaskToEditInState}
+                />
+              );
+            })}
         </div>
       </div>
 
-      <EditTask showEditTask={showEditTask} closeDrawer={closeDrawer} />
+      <EditTask
+        showEditTask={showEditTask}
+        closeDrawer={closeDrawer}
+        updateTask={updateTask}
+        taskToEdit={taskToEdit}
+      />
     </div>
   );
 };

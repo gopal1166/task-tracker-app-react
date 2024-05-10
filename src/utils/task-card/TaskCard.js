@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import IconButton from "@mui/material/IconButton";
 import Stack from "@mui/material/Stack";
 import DeleteIcon from "@mui/icons-material/Delete";
@@ -17,6 +17,11 @@ import "./TaskCard.scss";
 
 const TaskCard = (props) => {
   const [showConfirmDelete, setShowConfirmDelete] = useState(false);
+  const { id, title, description, status } = props;
+
+  useEffect(() => {
+    console.log("status", status);
+  }, []);
 
   return (
     <div className="task-card-container">
@@ -28,7 +33,11 @@ const TaskCard = (props) => {
         <IconButton aria-label="edit">
           <BorderColorIcon
             fontSize="small"
-            onClick={() => props.openDrawer()}
+            onClick={() => {
+              console.log("props", props);
+              props.setTaskToEditInState({ ...props });
+              // props.openDrawer();
+            }}
           />
         </IconButton>
         <IconButton aria-label="delete">
@@ -65,7 +74,10 @@ const TaskCard = (props) => {
               cancel
             </Button>
             <Button
-              onClick={() => props.handleDelete(props.id)}
+              onClick={() => {
+                props.handleDelete(props.id);
+                setShowConfirmDelete(false);
+              }}
               variant="outlined"
               color="error"
             >
