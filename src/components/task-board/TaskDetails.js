@@ -62,7 +62,9 @@ const TaskDetails = (props) => {
         anchor="right"
         open={props.showTaskDetails}
         onClose={() => props.closeDrawer()}
-        PaperProps={{ sx: { width: 400, padding: "1rem" } }}
+        PaperProps={{
+          sx: { width: 400, padding: "1rem", backgroundColor: "#9DAAF2" },
+        }}
       >
         <h3>Task Details</h3>
 

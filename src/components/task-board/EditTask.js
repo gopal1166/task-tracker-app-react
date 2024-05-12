@@ -61,7 +61,9 @@ const EditTask = (props) => {
       <Drawer
         open={props.showEditTask}
         onClose={() => props.closeDrawer()}
-        PaperProps={{ sx: { width: 400, padding: "1rem" } }}
+        PaperProps={{
+          sx: { width: 400, padding: "1rem", backgroundColor: "#9DAAF2" },
+        }}
       >
         <h3>Edit Task</h3>
         <TextInput
