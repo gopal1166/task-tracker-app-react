@@ -21,7 +21,7 @@ const useFetchPosts = () => {
         });
 
         console.log("modified: ", modifiedResp);
-        setData(modifiedResp.slice(0, 4));
+        setData(modifiedResp.slice(0, 40));
       })
       .catch((err) => setError("Failed to fetch the posts"))
       .finally(() => {
